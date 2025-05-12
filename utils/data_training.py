@@ -4,11 +4,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 import pickle
-
 import yaml     
 import logging
 import os
-import numpy as np
+from dvclive import Live
 
 log_dir = './logs'
 os.makedirs(log_dir, exist_ok=True)
@@ -81,10 +80,15 @@ def evaluate_model(model, x_test, y_test):
     try:
         y_pred = model.predict(x_test)
         accuracy = accuracy_score(y_test, y_pred)
+
+        with Live(save_dvc_exp=True) as live:
+            live.log_metric('accuracy_score',accuracy)
+
         logger.info(f"Model evaluation completed with accuracy: {accuracy}")
         return accuracy
     except Exception as e:
         logger.error(f"Error in evaluate_model: {e}")
+
 
 if __name__=='__main__':
 
@@ -106,6 +110,8 @@ if __name__=='__main__':
     model = train_model(model, x_train, y_train)
     
     accuracy = evaluate_model(model, x_test, y_test)
+
+
 
     try:
         model_dir = './model'

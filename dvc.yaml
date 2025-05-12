@@ -2,25 +2,30 @@ stages:
   data_insert:
     cmd: python utils/data_insert.py
     deps:
-      - utils/data_insert.py
+    - utils/data_insert.py
     outs:
-      - data/original_data.csv
+    - data/original_data.csv
 
   data_preprocessing:
     cmd: python utils/data_preprocessing.py
     deps:
-      - utils/data_preprocessing.py
-      - data/original_data.csv
+    - utils/data_preprocessing.py
+    - data/original_data.csv
     outs:
-      - data/preprocessed_data.csv
+    - data/preprocessed_data.csv
 
   data_training:
     cmd: python utils/data_training.py
     params:
-      - data_training.test_size
-      - data_training.random_state
+    - data_training.test_size
+    - data_training.random_state
     deps:
-      - utils/data_training.py
-      - data/preprocessed_data.csv
+    - utils/data_training.py
+    - data/preprocessed_data.csv
     outs:
-      - model/trained_model.pkl
+    - model/trained_model.pkl
+metrics:
+- dvclive/metrics.json
+plots:
+- dvclive/plots/metrics:
+    x: step

@@ -37,8 +37,8 @@ stages:
       size: 40387
     - path: utils/data_training.py
       hash: md5
-      md5: 4341dd18f8808373a4267f5ed087b1e2
-      size: 3925
+      md5: abc012d6cbe98899436e1e2a8b58657e
+      size: 4042
     params:
       params.yaml:
         data_training.random_state: 42
@@ -46,5 +46,5 @@ stages:
     outs:
     - path: model/trained_model.pkl
       hash: md5
-      md5: ecc86ce74298b2d673a6fe2b243924db
-      size: 1153967
+      md5: f2cef2d0826f5e74965cb63930457876
+      size: 1204056
