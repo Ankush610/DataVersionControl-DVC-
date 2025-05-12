@@ -1,0 +1,50 @@
+schema: '2.0'
+stages:
+  data_insert:
+    cmd: python utils/data_insert.py
+    deps:
+    - path: utils/data_insert.py
+      hash: md5
+      md5: 47e8846e72492990c17d58e1b77d9c3e
+      size: 867
+    outs:
+    - path: data/original_data.csv
+      hash: md5
+      md5: a75267f10b641c6483714a41bc3d2636
+      size: 62997
+  data_preprocessing:
+    cmd: python utils/data_preprocessing.py
+    deps:
+    - path: data/original_data.csv
+      hash: md5
+      md5: a75267f10b641c6483714a41bc3d2636
+      size: 62997
+    - path: utils/data_preprocessing.py
+      hash: md5
+      md5: 0bcc9a8ca06307addb764740c355ed44
+      size: 3264
+    outs:
+    - path: data/preprocessed_data.csv
+      hash: md5
+      md5: 9555aea93ddd48357ac0b23e3fb02e41
+      size: 40387
+  data_training:
+    cmd: python utils/data_training.py
+    deps:
+    - path: data/preprocessed_data.csv
+      hash: md5
+      md5: 9555aea93ddd48357ac0b23e3fb02e41
+      size: 40387
+    - path: utils/data_training.py
+      hash: md5
+      md5: 4341dd18f8808373a4267f5ed087b1e2
+      size: 3925
+    params:
+      params.yaml:
+        data_training.random_state: 42
+        data_training.test_size: 0.4
+    outs:
+    - path: model/trained_model.pkl
+      hash: md5
+      md5: ecc86ce74298b2d673a6fe2b243924db
+      size: 1153967
