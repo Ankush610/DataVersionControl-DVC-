@@ -42,9 +42,9 @@ stages:
     params:
       params.yaml:
         data_training.random_state: 42
-        data_training.test_size: 0.2
+        data_training.test_size: 0.4
     outs:
     - path: model/trained_model.pkl
       hash: md5
-      md5: 688dfe0860ddbada36ff61a599147bf4
-      size: 1438966
+      md5: b5e00735182ad1ca92961c49178ea9e1
+      size: 1175247
