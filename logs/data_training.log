@@ -1,0 +1,5 @@
+2025-05-13 12:16:27,036 - data_training - INFO - params loaded sucessfully!
+2025-05-13 12:16:27,069 - data_training - INFO - Data split into training and testing sets with test size 0.4 and random state 42.
+2025-05-13 12:16:27,336 - data_training - INFO - Model training completed.
+2025-05-13 12:16:28,459 - data_training - INFO - Model evaluation completed with accuracy: 0.9593679458239278
+2025-05-13 12:16:28,467 - data_training - INFO - Model saved successfully at ./model\trained_model.pkl.

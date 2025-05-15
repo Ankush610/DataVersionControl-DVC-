@@ -1,0 +1,5 @@
+2025-05-13 12:16:20,042 - data_preprocessing - INFO - Removed 1 duplicates.
+2025-05-13 12:16:20,060 - data_preprocessing - INFO - Missing values handled successfully.
+2025-05-13 12:16:20,075 - data_preprocessing - INFO - Categorical variables converted to numerical successfully.
+2025-05-13 12:16:20,123 - data_preprocessing - INFO - Outliers removed successfully.
+2025-05-13 12:16:20,140 - data_preprocessing - INFO - Data preprocessing completed successfully.

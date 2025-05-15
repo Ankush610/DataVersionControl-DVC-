@@ -1,4 +1,6 @@
-data
-Insurance_Claim.csv
-model
-logs
+#uncomment these as these files will be untracked 
+
+# data
+# Insurance_Claim.csv
+# model
+# logs
