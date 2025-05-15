@@ -133,9 +133,6 @@ In DVC, a **`params.yaml`** file is used to store hyperparameters, configuration
 ### 📄 Example `params.yaml`:
 
 ```yaml
-data_training:
-  test_size: 0.2
-  random_state: 42
 
 train:
   epochs: 50
@@ -160,8 +157,6 @@ stages:
       - train.epochs
       - train.learning_rate
       - train.batch_size
-      - data_training.test_size
-      - data_training.random_state
     outs:
       - model.pkl
 ```
@@ -200,13 +195,9 @@ if __name__ == "__main__":
     params = load_params()
 
     # Accessing values
-    TEST_SIZE = params['data_training']['test_size']
-    RANDOM_STATE = params['data_training']['random_state']
-
     EPOCHS = params['train']['epochs']
     LEARNING_RATE = params['train']['learning_rate']
 
-    print(f"Test Size: {TEST_SIZE}, Random State: {RANDOM_STATE}")
     print(f"Training for {EPOCHS} epochs at {LEARNING_RATE} learning rate")
 ```
 
