@@ -1,12 +1,3 @@
-Awesome — let’s refine that `README.md` by removing the **Typical DVC Project Structure** section and making the other points even more comprehensive, adding clear practical context where useful.
-
-Here’s a polished, focused, and detailed version for you:
-
----
-
-## 📄 `README.md`
-
-
 # 📦 Data Version Control (DVC) — Project Documentation
 
 This documentation provides a complete overview of **DVC (Data Version Control)**, how it integrates with Git, manages data pipelines, tracks metrics, and leverages `dvclive` for real-time experiment tracking.
