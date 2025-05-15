@@ -117,6 +117,115 @@ stages:
 
 ---
 
+## 📋 YAML File for Parameter Passing (`params.yaml`)
+
+In DVC, a **`params.yaml`** file is used to store hyperparameters, configuration values, or any other parameters required by your ML pipeline stages.
+
+### 📌 Why Use `params.yaml`?
+
+* Centralized, clean configuration management.
+* Easy parameter tuning and tracking.
+* DVC automatically detects changes in parameters and re-runs affected stages.
+* Supports experiment management and comparisons via `dvc exp`.
+
+---
+
+### 📄 Example `params.yaml`:
+
+```yaml
+data_training:
+  test_size: 0.2
+  random_state: 42
+
+train:
+  epochs: 50
+  learning_rate: 0.001
+  batch_size: 32
+```
+
+---
+
+### 📑 Example `dvc.yaml` Stage Using the `params` Field:
+
+Notice how we declare the dependent parameters in the `params` section:
+
+```yaml
+stages:
+  train:
+    cmd: python train.py
+    deps:
+      - train.py
+      - data/processed
+    params:
+      - train.epochs
+      - train.learning_rate
+      - train.batch_size
+      - data_training.test_size
+      - data_training.random_state
+    outs:
+      - model.pkl
+```
+
+This tells DVC:
+
+* Which parameters this stage depends on.
+* To track their values in experiment history.
+* To re-run the stage if any of these parameters change.
+
+---
+
+### 🐍 Python Snippet to Load Parameters from `params.yaml`
+
+Here’s a clean, reusable function to safely load parameters and access them in your Python code:
+
+```python
+import yaml
+import logging
+
+# Setup logger
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+def load_params(params_path='params.yaml'):
+    try:
+        with open(params_path, 'r') as file:
+            params = yaml.safe_load(file)
+        logger.info("Parameters loaded successfully!")
+        return params
+    except Exception as e:
+        logger.error(f"Loading parameters caused an error: {e}")
+
+# Usage Example
+if __name__ == "__main__":
+    params = load_params()
+
+    # Accessing values
+    TEST_SIZE = params['data_training']['test_size']
+    RANDOM_STATE = params['data_training']['random_state']
+
+    EPOCHS = params['train']['epochs']
+    LEARNING_RATE = params['train']['learning_rate']
+
+    print(f"Test Size: {TEST_SIZE}, Random State: {RANDOM_STATE}")
+    print(f"Training for {EPOCHS} epochs at {LEARNING_RATE} learning rate")
+```
+
+**✅ Benefits:**
+
+* Clean separation of config and code.
+* Parameters can be changed easily without touching code.
+* Integrated with DVC’s parameter tracking and experiment comparison tools.
+* Supports parameter sweeps via:
+
+  ```bash
+  dvc exp run --set-param train.epochs=100
+  ```
+
+---
+
+This should drop cleanly into your README under a new heading. Want me to whip up a minimal `train.py` using these params in a dummy training loop too?
+
+
 ## 📊 What is `dvclive` and How Is It Used?
 
 **`dvclive`** is a lightweight logging and experiment tracking library built for integrating live metrics tracking into your ML training loops.
