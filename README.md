@@ -6,7 +6,7 @@ Here’s a polished, focused, and detailed version for you:
 
 ## 📄 `README.md`
 
-````markdown
+
 # 📦 Data Version Control (DVC) — Project Documentation
 
 This documentation provides a complete overview of **DVC (Data Version Control)**, how it integrates with Git, manages data pipelines, tracks metrics, and leverages `dvclive` for real-time experiment tracking.
@@ -66,7 +66,7 @@ dvc run -n preprocess \
         -d data/raw \
         -o data/processed \
         python preprocess.py
-````
+```
 
 **Explanation:**
 
